@@ -1,0 +1,4 @@
+{
+  "schema": "convex/schema.ts",
+  "node_runtime": "nodejs20.x"
+}
