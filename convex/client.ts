@@ -26,3 +26,5 @@ export function getConvexClient() {
     },
   });
 }
+
+export const convex = getConvexClient();
