@@ -1,7 +1,8 @@
 import { useState } from 'react';
-import { View, Text, TextInput, Pressable, ScrollView, KeyboardAvoidingView, Platform } from 'react-native';
+import { View, Text, Pressable, ScrollView, KeyboardAvoidingView, Platform } from 'react-native';
 import { useRouter } from 'expo-router';
 import { useAuthActions } from '@convex-dev/auth/react';
+import { AuthHeader, AuthInput, AuthButton, AuthError } from '@/components/(auth)/';
 
 export default function SignInScreen() {
   const [email, setEmail] = useState('');
@@ -40,56 +41,37 @@ export default function SignInScreen() {
         keyboardShouldPersistTaps="handled"
         showsVerticalScrollIndicator={false}
       >
-        <View className="mb-8">
-          <Text className="text-3xl font-bold text-gray-900">Sign In</Text>
-          <Text className="mt-2 text-base text-gray-600">
-            Welcome back! Please sign in to your account.
-          </Text>
-        </View>
+        <AuthHeader
+          title="Sign In"
+          subtitle="Welcome back! Please sign in to your account."
+        />
 
-        <View className="mb-4">
-          <Text className="mb-1.5 text-sm font-medium text-gray-700">Email</Text>
-          <TextInput
-            className="rounded-lg border border-gray-300 bg-white px-4 py-3 text-base text-gray-900"
-            placeholder="you@example.com"
-            placeholderTextColor="#9CA3AF"
-            value={email}
-            onChangeText={setEmail}
-            keyboardType="email-address"
-            autoCapitalize="none"
-            autoCorrect={false}
-            accessibilityLabel="Email"
-          />
-        </View>
+        <AuthInput
+          label="Email"
+          placeholder="you@example.com"
+          value={email}
+          onChangeText={setEmail}
+          keyboardType="email-address"
+          autoCapitalize="none"
+          autoCorrect={false}
+        />
 
-        <View className="mb-6">
-          <Text className="mb-1.5 text-sm font-medium text-gray-700">Password</Text>
-          <TextInput
-            className="rounded-lg border border-gray-300 bg-white px-4 py-3 text-base text-gray-900"
-            placeholder="Enter your password"
-            placeholderTextColor="#9CA3AF"
-            value={password}
-            onChangeText={setPassword}
-            secureTextEntry
-            accessibilityLabel="Password"
-          />
-        </View>
+        <AuthInput
+          label="Password"
+          placeholder="Enter your password"
+          value={password}
+          onChangeText={setPassword}
+          secureTextEntry
+        />
 
-        {signInError && (
-          <View className="mb-4 rounded-lg bg-red-50 px-4 py-3">
-            <Text className="text-sm text-red-600">{signInError}</Text>
-          </View>
-        )}
+        <AuthError message={signInError} />
 
-        <Pressable
-          className={`items-center justify-center rounded-lg bg-blue-600 px-4 py-3.5 ${loading ? 'opacity-50' : 'active:bg-blue-700'}`}
+        <AuthButton
+          label="Sign In"
+          loadingLabel="Signing in..."
           onPress={handleSignIn}
-          disabled={loading}
-          accessibilityRole="button"
-          accessibilityLabel="Sign In"
-        >
-          <Text className="text-base font-semibold text-white">{loading ? 'Signing in...' : 'Sign In'}</Text>
-        </Pressable>
+          loading={loading}
+        />
 
         <View className="mt-6 flex-row justify-center">
           <Text className="text-center text-sm text-gray-600">
