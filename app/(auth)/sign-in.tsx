@@ -20,10 +20,7 @@ export default function SignInScreen() {
     setSignInError(null);
     setLoading(true);
     try {
-      const result = await signIn('password', { email, password });
-      if (result.signingIn) {
-        router.replace('/(tabs)');
-      }
+      await signIn('password', { email, password });
     } catch (e: any) {
       setSignInError(e.message ?? 'Failed to sign in.');
     } finally {

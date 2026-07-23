@@ -11,7 +11,7 @@ export default function SignUpScreen() {
   const [signUpError, setSignUpError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
   const router = useRouter();
-  const { signUp } = useAuthActions();
+  const { signIn } = useAuthActions();
 
   const handleSignUp = async () => {
     if (!email || !password || !confirmPassword) {
@@ -29,13 +29,7 @@ export default function SignUpScreen() {
     setSignUpError(null);
     setLoading(true);
     try {
-      const result = await signUp('password', { email, password });
-      if (result.signingIn) {
-        router.replace('/(tabs)');
-      } else {
-        setSignUpError('Account created. Please sign in.');
-        router.replace('/sign-in');
-      }
+      await signIn('password', { email, password, flow: 'signUp' });
     } catch (e: any) {
       setSignUpError(e.message ?? 'Failed to sign up.');
     } finally {
