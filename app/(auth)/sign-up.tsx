@@ -10,7 +10,7 @@ export default function SignUpScreen() {
   const [signUpError, setSignUpError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
   const router = useRouter();
-  const { signIn } = useAuthActions();
+  const { signUp } = useAuthActions();
 
   const handleSignUp = async () => {
     if (!email || !password || !confirmPassword) {
@@ -28,7 +28,7 @@ export default function SignUpScreen() {
     setSignUpError(null);
     setLoading(true);
     try {
-      const result = await signIn('password', { email, password });
+      const result = await signUp('password', { email, password });
       if (result.signingIn) {
         router.replace('/');
       } else {
