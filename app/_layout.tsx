@@ -13,8 +13,12 @@ function RootNavigator() {
   const router = useRouter();
 
   useEffect(() => {
-    if (!isLoading && !isAuthenticated) {
-      router.replace('/sign-in');
+    if (!isLoading) {
+      if (isAuthenticated) {
+        router.replace('/(tabs)');
+      } else {
+        router.replace('/sign-in');
+      }
     }
   }, [isLoading, isAuthenticated, router]);
 
@@ -24,10 +28,6 @@ function RootNavigator() {
         <ActivityIndicator size="large" />
       </View>
     );
-  }
-
-  if (!isAuthenticated) {
-    return null;
   }
 
   return (
