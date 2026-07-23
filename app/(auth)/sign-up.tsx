@@ -31,7 +31,7 @@ export default function SignUpScreen() {
     try {
       const result = await signUp('password', { email, password });
       if (result.signingIn) {
-        router.replace('/');
+        router.replace('/(tabs)');
       } else {
         setSignUpError('Account created. Please sign in.');
         router.replace('/sign-in');

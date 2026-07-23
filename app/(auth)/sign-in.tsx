@@ -22,7 +22,7 @@ export default function SignInScreen() {
     try {
       const result = await signIn('password', { email, password });
       if (result.signingIn) {
-        router.replace('/');
+        router.replace('/(tabs)');
       }
     } catch (e: any) {
       setSignInError(e.message ?? 'Failed to sign in.');
