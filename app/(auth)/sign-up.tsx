@@ -1,8 +1,20 @@
-import { useState } from 'react';
-import { View, Text, Pressable, ScrollView, KeyboardAvoidingView, Platform } from 'react-native';
-import { useRouter } from 'expo-router';
+import {
+  AuthButton,
+  AuthError,
+  AuthHeader,
+  AuthInput,
+} from '@/components/(auth)/';
 import { useAuthActions } from '@convex-dev/auth/react';
-import { AuthHeader, AuthInput, AuthButton, AuthError } from '@/components/(auth)/';
+import { useRouter } from 'expo-router';
+import { useState } from 'react';
+import {
+  KeyboardAvoidingView,
+  Platform,
+  Pressable,
+  ScrollView,
+  Text,
+  View,
+} from 'react-native';
 
 export default function SignUpScreen() {
   const [email, setEmail] = useState('');
@@ -39,60 +51,84 @@ export default function SignUpScreen() {
 
   return (
     <KeyboardAvoidingView
-      className="flex-1 bg-gray-50"
+      className="flex-1"
       behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
     >
       <ScrollView
-        contentContainerClassName="flex-1 justify-center px-6 pb-10"
+        style={{
+          backgroundColor: '#1E3A8A',
+        }}
+        contentContainerClassName="flex-1 justify-center px-3 pb-10 bg-"
         keyboardShouldPersistTaps="handled"
         showsVerticalScrollIndicator={false}
       >
         <AuthHeader
-          title="Sign Up"
-          subtitle="Create your account to get started."
+          title="Create Account"
+          subtitle="Sign up to continue "
+          variant="dark"
+          align="center"
         />
 
-        <AuthInput
-          label="Email"
-          placeholder="you@example.com"
-          value={email}
-          onChangeText={setEmail}
-          keyboardType="email-address"
-          autoCapitalize="none"
-          autoCorrect={false}
-        />
+        <View
+          style={{
+            backgroundColor: '#ece3e3',
+          }}
+          className="rounded-2xl p-6"
+        >
+          <AuthInput
+            // label="Email"
+            placeholder="Your email here"
+            value={email}
+            onChangeText={setEmail}
+            keyboardType="email-address"
+            autoCapitalize="none"
+            autoCorrect={false}
+            leftIcon="mail-outline"
+          />
 
-        <AuthInput
-          label="Password"
-          placeholder="Create a password"
-          value={password}
-          onChangeText={setPassword}
-          secureTextEntry
-        />
+          <AuthInput
+            // label="Password"
+            placeholder="Create a password"
+            value={password}
+            onChangeText={setPassword}
+            secureToggle
+            leftIcon="lock-closed-outline"
+          />
 
-        <AuthInput
-          label="Confirm Password"
-          placeholder="Confirm your password"
-          value={confirmPassword}
-          onChangeText={setConfirmPassword}
-          secureTextEntry
-        />
+          <AuthInput
+            // label="Confirm Password"
+            placeholder="Confirm your password"
+            value={confirmPassword}
+            onChangeText={setConfirmPassword}
+            secureToggle
+            leftIcon="lock-closed-outline"
+          />
 
-        <AuthError message={signUpError} />
+          <AuthError message={signUpError} />
 
-        <AuthButton
-          label="Sign Up"
-          loadingLabel="Signing up..."
-          onPress={handleSignUp}
-          loading={loading}
-        />
+          <AuthButton
+            label="Create Account"
+            loadingLabel="Creating account..."
+            onPress={handleSignUp}
+            loading={loading}
+            variant="gradient"
+          />
+        </View>
 
-        <View className="mt-6 flex-row justify-center">
-          <Text className="text-center text-sm text-gray-600">
-            Already have an account?{' '}
+        <View className="mt-8 flex-row justify-center">
+          <Text
+            style={{
+              color: '#fff',
+            }}
+            className="text-center text-sm"
+          >
+            Already a member?{' '}
           </Text>
           <Pressable onPress={() => router.push('/sign-in')}>
-            <Text className="text-sm font-semibold text-blue-600">Sign In</Text>
+            <Text className="text-sm font-semibold text-[#7C3AED]">
+              {' '}
+              Sign In
+            </Text>
           </Pressable>
         </View>
       </ScrollView>

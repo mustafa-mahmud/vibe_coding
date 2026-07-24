@@ -1,15 +1,39 @@
-import { View, Text } from 'react-native';
+import { Text, View } from 'react-native';
 
 interface AuthHeaderProps {
   title: string;
   subtitle: string;
+  variant?: 'light' | 'dark';
+  align?: 'left' | 'center';
 }
 
-export function AuthHeader({ title, subtitle }: AuthHeaderProps) {
+export function AuthHeader({
+  title,
+  subtitle,
+  variant = 'light',
+  align = 'left',
+}: AuthHeaderProps) {
+  const isDark = variant === 'dark';
+  const isCenter = align === 'center';
+
   return (
-    <View className="mb-8">
-      <Text className="text-3xl font-bold text-gray-900">{title}</Text>
-      <Text className="mt-2 text-base text-gray-600">{subtitle}</Text>
+    <View className={`mb-8 ${isCenter ? 'items-center' : ''}`}>
+      <Text
+        style={{
+          color: 'white',
+        }}
+        className={`text-[32px] font-bold`}
+      >
+        {title}
+      </Text>
+      <Text
+        style={{
+          color: 'white',
+        }}
+        className={`mt-2 text-base`}
+      >
+        {subtitle}
+      </Text>
     </View>
   );
 }

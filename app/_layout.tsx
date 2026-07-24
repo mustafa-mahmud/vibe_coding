@@ -1,9 +1,9 @@
-import { useConvexAuth, ConvexAuthProvider } from '@convex-dev/auth/react';
+import { ConvexAuthProvider, useConvexAuth } from '@convex-dev/auth/react';
 import { Stack, useRouter } from 'expo-router';
-import { useEffect } from 'react';
-import { getConvexClient } from '../utils/convex/client';
 import * as SecureStore from 'expo-secure-store';
+import { useEffect } from 'react';
 import { ActivityIndicator, View } from 'react-native';
+import { getConvexClient } from '../utils/convex/client';
 import './../global.css';
 
 const convex = getConvexClient();
@@ -31,7 +31,11 @@ function RootNavigator() {
   }
 
   return (
-    <Stack>
+    <Stack
+      screenOptions={{
+        headerShown: false,
+      }}
+    >
       <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
     </Stack>
   );
