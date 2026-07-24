@@ -1,7 +1,7 @@
 import { useConvexAuth, ConvexAuthProvider } from '@convex-dev/auth/react';
 import { Stack, useRouter } from 'expo-router';
 import { useEffect } from 'react';
-import { getConvexClient } from '../convex/client';
+import { getConvexClient } from '../utils/convex/client';
 import * as SecureStore from 'expo-secure-store';
 import { ActivityIndicator, View } from 'react-native';
 import './../global.css';

@@ -39,8 +39,13 @@
           }
         }
       ],
-      "expo-secure-store"
+      "expo-secure-store",
+      "expo-dev-client"
     ],
+    "extra": {
+      "EXPO_PUBLIC_CONVEX_URL": "http://localhost:3210",
+      "EXPO_PUBLIC_CONVEX_SITE_URL": "http://localhost:3211"
+    },
     "experiments": {
       "typedRoutes": true,
       "reactCompiler": true
