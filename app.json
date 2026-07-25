@@ -43,8 +43,8 @@
       "expo-dev-client"
     ],
     "extra": {
-      "EXPO_PUBLIC_CONVEX_URL": "http://localhost:3210",
-      "EXPO_PUBLIC_CONVEX_SITE_URL": "http://localhost:3211"
+      "EXPO_PUBLIC_CONVEX_URL": "https://bright-hawk-963.convex.cloud",
+      "EXPO_PUBLIC_CONVEX_SITE_URL": "https://bright-hawk-963.convex.site"
     },
     "experiments": {
       "typedRoutes": true,

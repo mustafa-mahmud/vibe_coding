@@ -20,7 +20,7 @@ export default function SignInScreen() {
     setSignInError(null);
     setLoading(true);
     try {
-      await signIn('password', { email, password });
+      await signIn('password', { email, password, flow: 'signIn' });
     } catch (e: any) {
       setSignInError(e.message ?? 'Failed to sign in.');
     } finally {
